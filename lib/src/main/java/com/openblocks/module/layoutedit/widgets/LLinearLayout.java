@@ -5,8 +5,9 @@ import android.graphics.Paint;
 
 import com.openblocks.module.layoutedit.LWidget;
 
+// To avoid clashing with android's library, I've decided to add L for each widgets, as an
+// abbreviation of "LayoutEdit"
 public class LLinearLayout extends LWidget {
-
     @Override
     public int getHeight() {
         return 0;
