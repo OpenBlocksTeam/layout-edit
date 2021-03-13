@@ -86,7 +86,7 @@ public class LVerticalLinearLayout extends LWidget {
 
             child.draw(canvas, x, y_child_offset, height, width);
 
-            y_child_offset += child.getHeight();
+            y_child_offset += child.getHeight() + child.margin.bottom + child.padding.bottom;
         }
     }
 
