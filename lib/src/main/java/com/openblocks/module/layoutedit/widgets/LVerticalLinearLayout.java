@@ -19,13 +19,13 @@ public class LVerticalLinearLayout extends LWidget {
     }
 
     @Override
-    public int getMinHeight() {
+    public int getMinHeight(int parent_height) {
         int height_total = margin.top + padding.top;
 
         for (LWidget child : childs) {
             height_total +=
                     child.margin.top + child.padding.top +
-                    child.getHeight() +
+                    child.getHeight(parent_height) +
                     child.margin.bottom + child.padding.bottom;
         }
 
@@ -35,7 +35,7 @@ public class LVerticalLinearLayout extends LWidget {
     }
 
     @Override
-    public int getMinWidth() {
+    public int getMinWidth(int parent_width) {
         int width_total =
                 margin.left + padding.left
                  + margin.right + padding.right;
@@ -46,7 +46,7 @@ public class LVerticalLinearLayout extends LWidget {
                             margin.left + padding.left +
 
                             child.margin.left + child.padding.left +
-                            child.getHeight() +
+                            child.getWidth(parent_width) +
                             child.margin.right + child.padding.right
                             ,
                             width_total
@@ -56,16 +56,6 @@ public class LVerticalLinearLayout extends LWidget {
         width_total += margin.right + padding.right;
 
         return width_total;
-    }
-
-    @Override
-    public int getMaxHeight() {
-        return 0;
-    }
-
-    @Override
-    public int getMaxWidth() {
-        return 0;
     }
 
     void drawOutline(Canvas canvas, int x, int y, int height, int width) {
@@ -88,11 +78,11 @@ public class LVerticalLinearLayout extends LWidget {
 
             child.draw(canvas, x, y_child_offset, height, width);
 
-            y_child_offset += child.getHeight() + child.margin.bottom + child.padding.bottom;
+            y_child_offset += child.getHeight(height) + child.margin.bottom + child.padding.bottom;
         }
     }
 
-    // Note: Margin offset should be handled by the renderer, not ourselves
+    // !CANCELLED! Note: Margin offset should be handled by the renderer, not ourselves
 
     @Override
     public void draw(Canvas canvas, int x, int y, int height, int width) {

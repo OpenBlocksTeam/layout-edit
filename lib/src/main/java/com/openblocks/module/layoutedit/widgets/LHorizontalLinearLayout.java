@@ -14,13 +14,13 @@ public class LHorizontalLinearLayout extends LVerticalLinearLayout {
     }
 
     @Override
-    public int getMinWidth() {
+    public int getMinWidth(int parent_width) {
         int width_total = margin.left + padding.left;
 
         for (LWidget child : childs) {
             width_total +=
                     child.margin.left + child.padding.left +
-                    child.getWidth() +
+                    child.getWidth(parent_width) +
                     child.margin.right + child.padding.right;
         }
 
@@ -30,7 +30,7 @@ public class LHorizontalLinearLayout extends LVerticalLinearLayout {
     }
 
     @Override
-    public int getMinHeight() {
+    public int getMinHeight(int parent_height) {
         int height_total =
                 margin.top + padding.top
                  + margin.bottom + padding.bottom;
@@ -41,7 +41,7 @@ public class LHorizontalLinearLayout extends LVerticalLinearLayout {
                             margin.top + padding.top +
 
                             child.margin.top + child.padding.top +
-                            child.getHeight() +
+                            child.getHeight(parent_height) +
                             child.margin.bottom + child.padding.bottom
                             ,
                             height_total
@@ -62,7 +62,7 @@ public class LHorizontalLinearLayout extends LVerticalLinearLayout {
 
             child.draw(canvas, x_child_offset, y, height, width);
 
-            x_child_offset += child.getWidth() + child.margin.right + child.margin.right;
+            x_child_offset += child.getWidth(width) + child.margin.right + child.margin.right;
         }
     }
 }

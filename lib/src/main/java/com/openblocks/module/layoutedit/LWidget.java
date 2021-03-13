@@ -44,37 +44,34 @@ public abstract class LWidget {
         return width_type;
     }
 
-    public abstract int getMinHeight();
-    public abstract int getMinWidth();
+    public abstract int getMinHeight(int parent_height);
+    public abstract int getMinWidth(int parent_width);
 
-    public abstract int getMaxHeight();
-    public abstract int getMaxWidth();
-
-    public int getHeight() {
+    public int getHeight(int parent_height) {
         switch (height_type) {
             case WRAP_CONTENT:
-                return getMinHeight();
+                return getMinHeight(parent_height);
 
             case FIXED:
                 return fixed_height;
 
             case MATCH_PARENT:
             default:
-                return getMaxHeight();
+                return parent_height;
         }
     }
 
-    public int getWidth() {
+    public int getWidth(int parent_width) {
         switch (width_type) {
             case WRAP_CONTENT:
-                return getMinWidth();
+                return getMinWidth(parent_width);
 
             case FIXED:
                 return fixed_width;
 
             case MATCH_PARENT:
             default:
-                return getMaxWidth();
+                return parent_width;
         }
     }
 
