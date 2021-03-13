@@ -65,7 +65,7 @@ public abstract class LWidget {
     }
 
     public int getWidth() {
-        switch (height_type) {
+        switch (width_type) {
             case WRAP_CONTENT:
                 return getMinWidth();
 
