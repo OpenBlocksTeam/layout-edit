@@ -71,7 +71,7 @@ public class LVerticalLinearLayout extends LWidget {
         canvas.drawRect(
                 x_with_margin,
                 y_with_margin,
-                
+
                 x + width - margin.right,
                 y + height - margin.bottom,
 
