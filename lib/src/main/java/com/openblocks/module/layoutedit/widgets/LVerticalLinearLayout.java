@@ -65,7 +65,18 @@ public class LVerticalLinearLayout extends LWidget {
         outline.setColor(0xFF6A6A6A);
         outline.setStrokeWidth(1f);
 
-        canvas.drawRect(x, y, x + width, y + height, outline);
+        int x_with_margin = x + margin.left;
+        int y_with_margin = y + margin.top;
+
+        canvas.drawRect(
+                x_with_margin,
+                y_with_margin,
+                
+                x + width - margin.right,
+                y + height - margin.bottom,
+
+                outline
+        );
     }
 
     void drawChilds(Canvas canvas, int x, int y, int height, int width) {
@@ -88,10 +99,10 @@ public class LVerticalLinearLayout extends LWidget {
     public void draw(Canvas canvas, int x, int y, int height, int width) {
         drawOutline(
                 canvas,
-                x + margin.top,
-                y + margin.left,
-                height - margin.bottom,
-                width - margin.right
+                x,
+                y,
+                height,
+                width
         );
 
         // Make sure to apply the padding and margin
