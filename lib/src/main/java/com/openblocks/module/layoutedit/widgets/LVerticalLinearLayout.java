@@ -43,6 +43,8 @@ public class LVerticalLinearLayout extends LWidget {
         for (LWidget child : childs) {
             width_total =
                     Math.max(
+                            margin.left + padding.left +
+
                             child.margin.left + child.padding.left +
                             child.getHeight() +
                             child.margin.right + child.padding.right

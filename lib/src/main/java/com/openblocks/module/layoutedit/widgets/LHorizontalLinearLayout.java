@@ -38,6 +38,8 @@ public class LHorizontalLinearLayout extends LVerticalLinearLayout {
         for (LWidget child : childs) {
             height_total =
                     Math.max(
+                            margin.top + padding.top +
+
                             child.margin.top + child.padding.top +
                             child.getHeight() +
                             child.margin.bottom + child.padding.bottom
