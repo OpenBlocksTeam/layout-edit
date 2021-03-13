@@ -87,13 +87,20 @@ public abstract class LWidget {
         Paint p = new Paint(Paint.ANTI_ALIAS_FLAG);
         p.setColor(0x557AFDFF);
 
-        canvas.drawRect(x, y, x + height, y + width, p);
+        canvas.drawRect(
+                x + margin.left,
+                y + margin.top,
+                x + height - margin.right,
+                y + width - margin.bottom,
+                p
+        );
 
         draw(canvas, x, y, height, width);
     }
 
     /**
      * This function is used to casually draw the widget
+     * Note: Margin and padding aren't applied, you should apply it in this function
      * @param canvas The canvas
      * @param x The x position
      * @param y The y position

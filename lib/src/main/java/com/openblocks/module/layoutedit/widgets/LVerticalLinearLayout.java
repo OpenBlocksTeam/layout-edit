@@ -82,11 +82,25 @@ public class LVerticalLinearLayout extends LWidget {
         }
     }
 
-    // !CANCELLED! Note: Margin offset should be handled by the renderer, not ourselves
+    // Note: Margin and padding offset should be handled by us, not the "renderer"
 
     @Override
     public void draw(Canvas canvas, int x, int y, int height, int width) {
-        drawOutline(canvas, x, y, height, width);
-        drawChilds(canvas, x, y, height, width);
+        drawOutline(
+                canvas,
+                x + margin.top,
+                y + margin.left,
+                height - margin.bottom,
+                width - margin.right
+        );
+
+        // Make sure to apply the padding and margin
+        drawChilds(
+                canvas,
+                x + padding.left + margin.left,
+                y + padding.top + margin.top,
+                height - padding.bottom - margin.bottom,
+                width - padding.right - margin.right
+        );
     }
 }
