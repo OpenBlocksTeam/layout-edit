@@ -2,6 +2,7 @@ package com.openblocks.module.layoutedit;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.util.Size;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,17 +25,42 @@ public abstract class LWidget {
     public ArrayList<LWidget> childs;
     public ArrayList<LWidgetProperty> properties = new ArrayList<>();
 
-    public LWidget(ArrayList<LWidget> childs, Space padding, Space margin) {
+    int bg_color;
+    int fg_color;
+
+    public LWidget(ArrayList<LWidget> childs, Space padding, Space margin, SizeType height_type, SizeType width_type) {
         this.childs = childs;
         this.padding = padding;
         this.margin = margin;
+        this.height_type = height_type;
+        this.width_type = width_type;
     }
 
-    public LWidget(ArrayList<LWidget> childs) {
+    public LWidget(ArrayList<LWidget> childs, SizeType height_type, SizeType width_type) {
         this.childs = childs;
         this.padding = new Space(8, 8, 8, 8);
         this.margin = new Space();
+        this.height_type = height_type;
+        this.width_type = width_type;
     }
+
+
+    public int getBackgroundColor() {
+        return bg_color;
+    }
+
+    public void setBackgroundColor(int bg_color) {
+        this.bg_color = bg_color;
+    }
+
+    public int getForegroundColor() {
+        return fg_color;
+    }
+
+    public void setForegroundColor(int fg_color) {
+        this.fg_color = fg_color;
+    }
+
 
     public SizeType getHeightSizeType() {
         return height_type;

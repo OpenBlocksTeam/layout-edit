@@ -3,9 +3,12 @@ package com.openblocks.module.layoutedit.widgets;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+import androidx.annotation.Nullable;
+
 import com.openblocks.module.layoutedit.LWidget;
 import com.openblocks.module.layoutedit.LWidgetProperty;
 import com.openblocks.module.layoutedit.LWidgetPropertyType;
+import com.openblocks.module.layoutedit.SizeType;
 import com.openblocks.module.layoutedit.Space;
 
 import java.util.ArrayList;
@@ -14,8 +17,12 @@ import java.util.ArrayList;
 // abbreviation of "LayoutEdit"
 public class LVerticalLinearLayout extends LWidget {
 
-    public LVerticalLinearLayout(ArrayList<LWidget> childs, Space padding, Space margin) {
-        super(childs, padding, margin);
+    public LVerticalLinearLayout(ArrayList<LWidget> childs, Space padding, Space margin, SizeType height_type, SizeType width_type) {
+        super(childs, padding, margin, height_type, width_type);
+    }
+
+    public LVerticalLinearLayout(ArrayList<LWidget> childs, SizeType height_type, SizeType width_type) {
+        super(childs, height_type, width_type);
     }
 
     @Override
@@ -72,24 +79,22 @@ public class LVerticalLinearLayout extends LWidget {
                 x_with_margin,
                 y_with_margin,
 
-                x + width - margin.right,
-                y + height - margin.bottom,
+                x_with_margin + width,
+                y_with_margin + height,
 
                 outline
         );
     }
 
     void drawChilds(Canvas canvas, int x, int y, int height, int width) {
-        int y_child_offset =
-                y +
-                margin.top + padding.top;
+        int y_child_offset = y + padding.top;
 
         for (LWidget child : childs) {
-            y_child_offset += child.margin.top + child.padding.top;
+            y_child_offset += child.margin.top;
 
-            child.draw(canvas, x, y_child_offset, height, width);
+            child.draw(canvas, x + padding.left, y_child_offset, child.getHeight(height - padding.bottom), child.getWidth(width - padding.right));
 
-            y_child_offset += child.getHeight(height) + child.margin.bottom + child.padding.bottom;
+            y_child_offset += child.getHeight(height) + child.margin.bottom;
         }
     }
 
@@ -97,6 +102,23 @@ public class LVerticalLinearLayout extends LWidget {
 
     @Override
     public void draw(Canvas canvas, int x, int y, int height, int width) {
+        // Draw the background color
+        Paint p = new Paint(Paint.ANTI_ALIAS_FLAG);
+        p.setColor(getBackgroundColor());
+
+        int x_with_margin = x + margin.left;
+        int y_with_margin = y + margin.top;
+
+        canvas.drawRect(
+                x_with_margin,
+                y_with_margin,
+
+                x_with_margin + width,
+                y_with_margin + height,
+
+                p
+        );
+
         drawOutline(
                 canvas,
                 x,
@@ -105,13 +127,13 @@ public class LVerticalLinearLayout extends LWidget {
                 width
         );
 
-        // Make sure to apply the padding and margin
+        // Make sure to apply the margin
         drawChilds(
                 canvas,
-                x + padding.left + margin.left,
-                y + padding.top + margin.top,
-                height - padding.bottom - margin.bottom,
-                width - padding.right - margin.right
+                x + margin.left,
+                y + margin.top,
+                height - margin.bottom,
+                width - margin.right
         );
     }
 }

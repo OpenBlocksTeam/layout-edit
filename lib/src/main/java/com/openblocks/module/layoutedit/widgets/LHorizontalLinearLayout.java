@@ -3,14 +3,19 @@ package com.openblocks.module.layoutedit.widgets;
 import android.graphics.Canvas;
 
 import com.openblocks.module.layoutedit.LWidget;
+import com.openblocks.module.layoutedit.SizeType;
 import com.openblocks.module.layoutedit.Space;
 
 import java.util.ArrayList;
 
 public class LHorizontalLinearLayout extends LVerticalLinearLayout {
 
-    public LHorizontalLinearLayout(ArrayList<LWidget> childs, Space padding, Space margin) {
-        super(childs, padding, margin);
+    public LHorizontalLinearLayout(ArrayList<LWidget> childs, Space padding, Space margin, SizeType height_type, SizeType width_type) {
+        super(childs, padding, margin, height_type, width_type);
+    }
+
+    public LHorizontalLinearLayout(ArrayList<LWidget> childs, SizeType height_type, SizeType width_type) {
+        super(childs, height_type, width_type);
     }
 
     @Override
