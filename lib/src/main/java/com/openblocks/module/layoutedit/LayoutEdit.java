@@ -11,9 +11,11 @@ import android.view.View;
 import androidx.annotation.Nullable;
 
 import com.openblocks.module.layoutedit.widgets.LHorizontalLinearLayout;
+import com.openblocks.module.layoutedit.widgets.LTextView;
 import com.openblocks.module.layoutedit.widgets.LVerticalLinearLayout;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Random;
 
 public class LayoutEdit extends View {
@@ -50,9 +52,19 @@ public class LayoutEdit extends View {
     private void initialize(Context context, AttributeSet attributeSet) {
         ArrayList<LWidget> widgets = new ArrayList<>();
 
+        ArrayList<LWidget> textviews = new ArrayList<>();
+        textviews.add(
+            new LTextView("Hello World",
+                new Space(8, 8, 8, 8),
+                new Space(),
+                SizeType.WRAP_CONTENT,
+                SizeType.WRAP_CONTENT
+            )
+        );
+
         for (int i = 0; i < 10; i++) {
             LWidget widget = new LVerticalLinearLayout(
-                    new ArrayList<LWidget>(),
+                    textviews,
                     new Space(16, 16, 16, 16),
                     new Space(i == 0 ? 0 : 8, 0, 0, 0),
                     SizeType.WRAP_CONTENT,
