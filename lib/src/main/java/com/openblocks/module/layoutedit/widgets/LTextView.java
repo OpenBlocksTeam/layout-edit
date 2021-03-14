@@ -15,12 +15,16 @@ public class LTextView extends LWidget {
     String text;
     Paint text_paint;
 
+    public LTextView(String text) {
+        this(text, new Space(8, 8, 8, 8), new Space(), SizeType.WRAP_CONTENT, SizeType.WRAP_CONTENT);
+    }
+
     public LTextView(String text, Space padding, Space margin, SizeType height_type, SizeType width_type) {
         super(new ArrayList<LWidget>(), padding, margin, height_type, width_type);
 
         text_paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         text_paint.setColor(0xFFFFFFFF);
-        text_paint.setTextSize(12f);
+        text_paint.setTextSize(14f);
 
         this.text = text;
     }

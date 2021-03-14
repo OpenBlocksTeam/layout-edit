@@ -53,14 +53,7 @@ public class LayoutEdit extends View {
         ArrayList<LWidget> widgets = new ArrayList<>();
 
         ArrayList<LWidget> textviews = new ArrayList<>();
-        textviews.add(
-            new LTextView("Hello World",
-                new Space(8, 8, 8, 8),
-                new Space(),
-                SizeType.WRAP_CONTENT,
-                SizeType.WRAP_CONTENT
-            )
-        );
+        textviews.add(new LTextView("Hello World"));
 
         for (int i = 0; i < 10; i++) {
             LWidget widget = new LVerticalLinearLayout(
