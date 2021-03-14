@@ -3,11 +3,7 @@ package com.openblocks.module.layoutedit.widgets;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
-import androidx.annotation.Nullable;
-
 import com.openblocks.module.layoutedit.LWidget;
-import com.openblocks.module.layoutedit.LWidgetProperty;
-import com.openblocks.module.layoutedit.LWidgetPropertyType;
 import com.openblocks.module.layoutedit.SizeType;
 import com.openblocks.module.layoutedit.Space;
 
@@ -17,12 +13,28 @@ import java.util.ArrayList;
 // abbreviation of "LayoutEdit"
 public class LVerticalLinearLayout extends LWidget {
 
+    Paint background_paint;
+    Paint outline_paint;
+
     public LVerticalLinearLayout(ArrayList<LWidget> childs, Space padding, Space margin, SizeType height_type, SizeType width_type) {
         super(childs, padding, margin, height_type, width_type);
+
+        initialize();
     }
 
     public LVerticalLinearLayout(ArrayList<LWidget> childs, SizeType height_type, SizeType width_type) {
         super(childs, height_type, width_type);
+
+        initialize();
+    }
+
+    private void initialize() {
+        background_paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+
+        outline_paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        outline_paint.setStyle(Paint.Style.STROKE);
+        outline_paint.setColor(0xFF6A6A6A);
+        outline_paint.setStrokeWidth(1f);
     }
 
     @Override
@@ -65,11 +77,6 @@ public class LVerticalLinearLayout extends LWidget {
 
     void drawOutline(Canvas canvas, int x, int y, int height, int width) {
         // Draw the outline
-        Paint outline = new Paint(Paint.ANTI_ALIAS_FLAG);
-        outline.setStyle(Paint.Style.STROKE);
-        outline.setColor(0xFF6A6A6A);
-        outline.setStrokeWidth(1f);
-
         canvas.drawRect(
                 x,
                 y,
@@ -77,7 +84,7 @@ public class LVerticalLinearLayout extends LWidget {
                 x + width,
                 y + height,
 
-                outline
+                outline_paint
         );
     }
 
@@ -98,8 +105,7 @@ public class LVerticalLinearLayout extends LWidget {
     @Override
     public void draw(Canvas canvas, int x, int y, int height, int width) {
         // Draw the background color
-        Paint p = new Paint(Paint.ANTI_ALIAS_FLAG);
-        p.setColor(getBackgroundColor());
+        background_paint.setColor(getBackgroundColor());
 
         canvas.drawRect(
                 x,
@@ -108,7 +114,7 @@ public class LVerticalLinearLayout extends LWidget {
                 x + width,
                 y + height,
 
-                p
+                background_paint
         );
 
         drawOutline(
