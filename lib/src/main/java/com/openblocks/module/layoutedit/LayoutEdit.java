@@ -1,8 +1,11 @@
 package com.openblocks.module.layoutedit;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -10,6 +13,7 @@ import androidx.annotation.Nullable;
 import com.openblocks.module.layoutedit.widgets.LVerticalLinearLayout;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class LayoutEdit extends View {
 
@@ -43,11 +47,34 @@ public class LayoutEdit extends View {
 
     
     private void initialize(Context context, AttributeSet attributeSet) {
+        ArrayList<LWidget> widgets = new ArrayList<>();
+
+        for (int i = 0; i < 10; i++) {
+            LWidget widget = new LVerticalLinearLayout(
+                    new ArrayList<LWidget>(),
+                    new Space(16, 16, 16, 16),
+                    new Space(8, 0, 0, 0),
+                    SizeType.WRAP_CONTENT,
+                    SizeType.WRAP_CONTENT
+            );
+
+            Random rnd = new Random();
+
+            int color = Color.argb(255, 0, 0, rnd.nextInt(256));
+            widget.setBackgroundColor(color);
+
+            widgets.add(widget);
+        }
+
         root_widget = new LVerticalLinearLayout(
-                new ArrayList<LWidget>(),
-                /* Padding */ new Space(0, 0, 0, 0),
-                /* Margin  */ new Space(16, 16, 16, 16)
+                widgets,
+                /* Padding */ new Space(8, 16, 16, 16),
+                /* Margin  */ new Space(16, 16, 16, 16),
+                SizeType.MATCH_PARENT,
+                SizeType.MATCH_PARENT
         );
+
+        root_widget.setBackgroundColor(0xFFF31010);
 
         if (attributeSet != null) {
             // TODO: 3/12/21 Create custom styleable
