@@ -27,40 +27,38 @@ public class LVerticalLinearLayout extends LWidget {
 
     @Override
     public int getMinHeight(int parent_height) {
-        int height_total = margin.top + padding.top;
+        int height_total = padding.top;
 
         for (LWidget child : childs) {
             height_total +=
-                    child.margin.top + child.padding.top +
+                    child.margin.top +
                     child.getHeight(parent_height) +
-                    child.margin.bottom + child.padding.bottom;
+                    child.margin.bottom;
         }
 
-        height_total += margin.bottom + padding.bottom;
+        height_total += padding.bottom;
 
         return height_total;
     }
 
     @Override
     public int getMinWidth(int parent_width) {
-        int width_total =
-                margin.left + padding.left
-                 + margin.right + padding.right;
+        int width_total = padding.left;
 
         for (LWidget child : childs) {
             width_total =
                     Math.max(
-                            margin.left + padding.left +
+                            padding.left +
 
-                            child.margin.left + child.padding.left +
+                            child.margin.left +
                             child.getWidth(parent_width) +
-                            child.margin.right + child.padding.right
+                            child.margin.right
                             ,
                             width_total
                     );
         }
 
-        width_total += margin.right + padding.right;
+        width_total += padding.right;
 
         return width_total;
     }
@@ -72,33 +70,30 @@ public class LVerticalLinearLayout extends LWidget {
         outline.setColor(0xFF6A6A6A);
         outline.setStrokeWidth(1f);
 
-        int x_with_margin = x + margin.left;
-        int y_with_margin = y + margin.top;
-
         canvas.drawRect(
-                x_with_margin,
-                y_with_margin,
+                x,
+                y,
 
-                x_with_margin + width,
-                y_with_margin + height,
+                x + width,
+                y + height,
 
                 outline
         );
     }
 
     void drawChilds(Canvas canvas, int x, int y, int height, int width) {
-        int y_child_offset = y + padding.top;
+        int y_child_offset = y;
 
         for (LWidget child : childs) {
             y_child_offset += child.margin.top;
 
-            child.draw(canvas, x + padding.left, y_child_offset, child.getHeight(height - padding.bottom), child.getWidth(width - padding.right));
+            child.draw(canvas, x + child.margin.left, y_child_offset, child.getHeight(height), child.getWidth(width));
 
             y_child_offset += child.getHeight(height) + child.margin.bottom;
         }
     }
 
-    // Note: Margin and padding offset should be handled by us, not the "renderer"
+    // Note: Padding offset should be handled by us, not the "renderer"
 
     @Override
     public void draw(Canvas canvas, int x, int y, int height, int width) {
@@ -106,15 +101,12 @@ public class LVerticalLinearLayout extends LWidget {
         Paint p = new Paint(Paint.ANTI_ALIAS_FLAG);
         p.setColor(getBackgroundColor());
 
-        int x_with_margin = x + margin.left;
-        int y_with_margin = y + margin.top;
-
         canvas.drawRect(
-                x_with_margin,
-                y_with_margin,
+                x,
+                y,
 
-                x_with_margin + width,
-                y_with_margin + height,
+                x + width,
+                y + height,
 
                 p
         );
@@ -127,13 +119,12 @@ public class LVerticalLinearLayout extends LWidget {
                 width
         );
 
-        // Make sure to apply the margin
         drawChilds(
                 canvas,
-                x + margin.left,
-                y + margin.top,
-                height - margin.bottom,
-                width - margin.right
+                x + padding.left,
+                y + padding.top,
+                height - padding.bottom,
+                width - padding.right
         );
     }
 }

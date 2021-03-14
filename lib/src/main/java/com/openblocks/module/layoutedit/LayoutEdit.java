@@ -10,6 +10,7 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
+import com.openblocks.module.layoutedit.widgets.LHorizontalLinearLayout;
 import com.openblocks.module.layoutedit.widgets.LVerticalLinearLayout;
 
 import java.util.ArrayList;
@@ -53,7 +54,7 @@ public class LayoutEdit extends View {
             LWidget widget = new LVerticalLinearLayout(
                     new ArrayList<LWidget>(),
                     new Space(16, 16, 16, 16),
-                    new Space(8, 0, 0, 0),
+                    new Space(i == 0 ? 0 : 8, 0, 0, 0),
                     SizeType.WRAP_CONTENT,
                     SizeType.WRAP_CONTENT
             );
@@ -68,7 +69,7 @@ public class LayoutEdit extends View {
 
         root_widget = new LVerticalLinearLayout(
                 widgets,
-                /* Padding */ new Space(8, 16, 16, 16),
+                /* Padding */ new Space(16, 16, 16, 16),
                 /* Margin  */ new Space(16, 16, 16, 16),
                 SizeType.MATCH_PARENT,
                 SizeType.MATCH_PARENT
@@ -89,6 +90,12 @@ public class LayoutEdit extends View {
         super.onDraw(canvas);
 
         // Well, just draw the root widget I guess
-        root_widget.draw(canvas, 0, 0, getHeight(), getWidth());
+        root_widget.draw(
+                canvas,
+                root_widget.margin.left,
+                root_widget.margin.top,
+                getHeight() - root_widget.margin.top - root_widget.margin.bottom,
+                getWidth() - root_widget.margin.left - root_widget.margin.right
+        );
     }
 }
