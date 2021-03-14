@@ -2,6 +2,7 @@ package com.openblocks.module.layoutedit.widgets;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 
 import com.openblocks.module.layoutedit.LWidget;
 import com.openblocks.module.layoutedit.SizeType;
@@ -42,7 +43,9 @@ public class LTextView extends LWidget {
 
     @Override
     public int getMinHeight(int parent_height) {
-        return (int) text_paint.getTextSize();
+        Rect bounds = new Rect();
+        text_paint.getTextBounds(text, 0, text.length(), bounds);
+        return bounds.height();
     }
 
     @Override
