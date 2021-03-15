@@ -55,16 +55,16 @@ public class LayoutEdit extends View {
         ArrayList<LWidget> textviews = new ArrayList<>();
         textviews.add(new LTextView("Hello World"));
 
+        Random rnd = new Random();
+
         for (int i = 0; i < 10; i++) {
             LWidget widget = new LVerticalLinearLayout(
                     textviews,
                     new Space(16, 16, 16, 16),
                     new Space(i == 0 ? 0 : 8, 0, 0, 0),
                     SizeType.WRAP_CONTENT,
-                    SizeType.WRAP_CONTENT
+                    rnd.nextBoolean() ? SizeType.WRAP_CONTENT : SizeType.MATCH_PARENT
             );
-
-            Random rnd = new Random();
 
             int color = Color.argb(255, 0, 0, rnd.nextInt(256));
             widget.setBackgroundColor(color);

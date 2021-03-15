@@ -25,8 +25,19 @@ public abstract class LWidget {
     public ArrayList<LWidget> childs;
     public ArrayList<LWidgetProperty> properties = new ArrayList<>();
 
+    public int gravity = Gravity.TOP | Gravity.LEFT;
+
     int bg_color;
     int fg_color;
+
+    public LWidget(ArrayList<LWidget> childs, Space padding, Space margin, SizeType height_type, SizeType width_type, int gravity) {
+        this.childs = childs;
+        this.padding = padding;
+        this.margin = margin;
+        this.height_type = height_type;
+        this.width_type = width_type;
+        this.gravity = gravity;
+    }
 
     public LWidget(ArrayList<LWidget> childs, Space padding, Space margin, SizeType height_type, SizeType width_type) {
         this.childs = childs;

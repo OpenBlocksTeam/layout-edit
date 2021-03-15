@@ -10,6 +10,10 @@ import java.util.ArrayList;
 
 public class LHorizontalLinearLayout extends LVerticalLinearLayout {
 
+    public LHorizontalLinearLayout(ArrayList<LWidget> childs, Space padding, Space margin, SizeType height_type, SizeType width_type, int gravity) {
+        super(childs, padding, margin, height_type, width_type, gravity);
+    }
+
     public LHorizontalLinearLayout(ArrayList<LWidget> childs, Space padding, Space margin, SizeType height_type, SizeType width_type) {
         super(childs, padding, margin, height_type, width_type);
     }

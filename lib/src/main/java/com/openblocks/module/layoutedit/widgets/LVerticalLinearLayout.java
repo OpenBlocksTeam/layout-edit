@@ -3,6 +3,7 @@ package com.openblocks.module.layoutedit.widgets;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+import com.openblocks.module.layoutedit.Gravity;
 import com.openblocks.module.layoutedit.LWidget;
 import com.openblocks.module.layoutedit.SizeType;
 import com.openblocks.module.layoutedit.Space;
@@ -15,6 +16,12 @@ public class LVerticalLinearLayout extends LWidget {
 
     Paint background_paint;
     Paint outline_paint;
+
+    public LVerticalLinearLayout(ArrayList<LWidget> childs, Space padding, Space margin, SizeType height_type, SizeType width_type, int gravity) {
+        super(childs, padding, margin, height_type, width_type, gravity);
+
+        initialize();
+    }
 
     public LVerticalLinearLayout(ArrayList<LWidget> childs, Space padding, Space margin, SizeType height_type, SizeType width_type) {
         super(childs, padding, margin, height_type, width_type);
@@ -89,12 +96,37 @@ public class LVerticalLinearLayout extends LWidget {
     }
 
     void drawChilds(Canvas canvas, int x, int y, int height, int width) {
-        int y_child_offset = y;
+        int y_child_offset = 0;
 
         for (LWidget child : childs) {
             y_child_offset += child.margin.top;
 
-            child.draw(canvas, x + child.margin.left, y_child_offset, child.getHeight(height), child.getWidth(width));
+            int x_position = 0;
+            int y_position = 0;
+
+            // Vertical (y)
+            if ((gravity & Gravity.LEFT) == Gravity.LEFT) {
+                y_position = y;
+
+            } else if ((gravity & Gravity.RIGHT) == Gravity.RIGHT) {
+                y_position = y + height - child.getHeight(height - padding.bottom);
+
+            } else if ((gravity & Gravity.CENTER_VERTICAL) == Gravity.CENTER_VERTICAL) {
+                y_position = y + height / 2;
+            }
+
+            // Horizontal (x)
+            if ((gravity & Gravity.TOP) == Gravity.TOP) {
+                x_position = x;
+
+            } else if ((gravity & Gravity.BOTTOM) == Gravity.BOTTOM) {
+                x_position = x + width - child.getWidth(width - padding.right);
+
+            } else if ((gravity & Gravity.CENTER_HORIZONTAL) == Gravity.CENTER_HORIZONTAL) {
+                x_position = x + width / 2;
+            }
+
+            child.draw(canvas, x_position + child.margin.left, y_position + y_child_offset, child.getHeight(height), child.getWidth(width - padding.right));
 
             y_child_offset += child.getHeight(height) + child.margin.bottom;
         }
