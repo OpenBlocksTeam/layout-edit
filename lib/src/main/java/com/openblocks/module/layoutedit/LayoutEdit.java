@@ -72,25 +72,5 @@ public class LayoutEdit extends FrameLayout {
                 }
             });
         }
-
-        // TODO: 3/16/21 this 
-        
-        editor.setOnDragListener(new OnDragListener() {
-            @Override
-            public boolean onDrag(View v, DragEvent event) {
-                switch (event.getAction()) {
-                    case DragEvent.ACTION_DRAG_ENTERED:
-                        
-                    case DragEvent.ACTION_DRAG_LOCATION:
-
-                    case DragEvent.ACTION_DROP:
-
-                    case DragEvent.ACTION_DRAG_EXITED:
-
-                }
-
-                return true;
-            }
-        });
     }
 }
