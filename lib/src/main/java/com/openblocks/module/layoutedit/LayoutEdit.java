@@ -43,7 +43,6 @@ public class LayoutEdit extends FrameLayout {
         inflate(context, R.layout.editor, this);
 
         ViewGroup dock = findViewById(R.id.dock);
-        final ViewGroup editor = findViewById(R.id.editor);
 
         for (int i = 0; i < dock.getChildCount(); i++) {
             View view = dock.getChildAt(i);
