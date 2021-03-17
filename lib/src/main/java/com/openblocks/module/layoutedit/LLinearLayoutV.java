@@ -44,6 +44,7 @@ public class LLinearLayoutV extends LinearLayout {
 
     private void init() {
         setOrientation(VERTICAL);
+        setWillNotDraw(false);
 
         shadow = new LinearLayout(getContext());
         shadow.setPadding(8, 8, 8, 8);
