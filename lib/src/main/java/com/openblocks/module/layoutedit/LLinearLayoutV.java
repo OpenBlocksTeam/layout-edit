@@ -50,12 +50,13 @@ public class LLinearLayoutV extends LinearLayout {
         shadow.setPadding(8, 8, 8, 8);
         shadow.setMinimumHeight(50);
         shadow.setMinimumWidth(100);
-        shadow.setBackgroundColor(0xDD000000);
+        shadow.setBackgroundColor(0x99000000);
         shadow.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
         outline_paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         outline_paint.setStyle(Paint.Style.STROKE);
-        outline_paint.setColor(0xFF000000);
+        outline_paint.setColor(0xDD000000);
+        outline_paint.setStrokeWidth(3f);
     }
 
     @Override
@@ -70,6 +71,7 @@ public class LLinearLayoutV extends LinearLayout {
 
                 LLinearLayoutV lLinearLayoutV = new LLinearLayoutV(getContext());
                 lLinearLayoutV.setPadding(8, 8, 8, 8);
+                lLinearLayoutV.setMinimumHeight(50);
                 lLinearLayoutV.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                 addView(lLinearLayoutV);
 
