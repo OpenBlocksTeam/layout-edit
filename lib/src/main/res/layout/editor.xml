@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:background="#FFFFFF"
-        android:elevation="8dp"
+        android:elevation="3dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:background="#FFFFFF"
-            android:elevation="8dp"
+            android:elevation="2dp"
             android:orientation="horizontal"
             android:padding="4dp">
 
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:background="#FFFFFF"
-            android:elevation="8dp"
+            android:elevation="2dp"
             android:orientation="horizontal"
             android:padding="4dp">
 
@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:background="#FFFFFF"
-            android:elevation="8dp"
+            android:elevation="2dp"
             android:orientation="horizontal"
             android:padding="4dp">
 
@@ -77,7 +77,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:background="#FFFFFF"
-            android:elevation="8dp"
+            android:elevation="2dp"
             android:orientation="horizontal"
             android:padding="4dp">
 
@@ -95,7 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:background="#FFFFFF"
-            android:elevation="8dp"
+            android:elevation="2dp"
             android:orientation="horizontal"
             android:padding="4dp">
 
@@ -115,8 +115,8 @@
         android:layout_marginTop="16dp"
         android:orientation="vertical"
         android:background="#FFFFFF"
-        android:elevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:elevation="3dp"
         app:layout_constraintDimensionRatio="w,9:16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/dock"
