@@ -1,4 +1,4 @@
-package com.openblocks.module.layoutedit;
+package com.openblocks.module.layoutedit.app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
