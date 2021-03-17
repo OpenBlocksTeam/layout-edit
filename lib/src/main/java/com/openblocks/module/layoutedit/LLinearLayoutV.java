@@ -21,31 +21,36 @@ public class LLinearLayoutV extends LinearLayout {
     public LLinearLayoutV(Context context) {
         super(context);
 
-        init(context);
+        init();
     }
 
     public LLinearLayoutV(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
-        init(context);
+        init();
     }
 
     public LLinearLayoutV(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        init(context);
+        init();
     }
 
     public LLinearLayoutV(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
 
-        init(context);
+        init();
     }
 
-    private void init(Context context) {
+    private void init() {
         setOrientation(VERTICAL);
 
-        shadow = LayoutInflater.from(context).inflate(R.layout.shadow, null);
+        shadow = new LinearLayout(getContext());
+        shadow.setPadding(8, 8, 8, 8);
+        shadow.setMinimumHeight(50);
+        shadow.setMinimumWidth(100);
+        shadow.setBackgroundColor(0xDD000000);
+        shadow.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
         outline_paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         outline_paint.setStyle(Paint.Style.STROKE);
